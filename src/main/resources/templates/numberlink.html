@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumberLink - Game Studio</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>NumberLink - Game Studio</h1>
+
+    <div th:unless="${gameStarted}">
+        <form th:action="@{/numberlink/start}" method="post">
+            <div class="form-group">
+                <label for="playerName">Player Nickname:</label>
+                <input type="text" id="playerName" name="playerName" th:value="${playerName}" placeholder="Enter your nickname" required>
+            </div>
+            <div class="form-group">
+                <label for="level">Difficulty Level:</label>
+                <select id="level" name="level" required>
+                    <option value="" disabled selected>Select a level</option>
+                    <option value="easy" th:selected="${level == 'easy'}">Easy (6x4)</option>
+                    <option value="medium" th:selected="${level == 'medium'}">Medium (8x8)</option>
+                    <option value="hard" th:selected="${level == 'hard'}">Hard (7x8)</option>
+                </select>
+            </div>
+            <button type="submit">Start Game</button>
+        </form>
+    </div>
+
+    <div th:if="${gameStarted}">
+        <a href="/numberlink/restart"><button>Start Over</button></a>
+        <a href="/numberlink/exit"><button>Return to Menu</button></a>
+    </div>
+
+    <div th:if="${message}" th:text="${message}" class="message"></div>
+
+    <div th:if="${gameCompleted}">
+        <form th:action="@{/numberlink/feedback}" method="post">
+            <label for="rating">Rate the game (1–10):</label>
+            <select name="rating" id="rating" required>
+                <option value="" disabled selected>Select rating</option>
+                <option th:each="i : ${#numbers.sequence(1,10)}"
+                        th:value="${i}" th:text="${i}"></option>
+            </select>
+
+            <br/><br/>
+
+            <label for="comment">Leave a comment:</label><br/>
+            <textarea name="comment" id="comment" placeholder="Your comment..." required></textarea><br/><br/>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <div th:unless="${gameStarted}">
+        <h2>Top Scores</h2>
+        <table class="scores-table">
+            <thead>
+            <tr>
+                <th>Player</th>
+                <th>Score (seconds)</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="score : ${topScores}" th:if="${score?.points != 0}">
+                <td th:text="${score?.player}"></td>
+                <td th:text="${score?.points}"></td>
+                <td th:text="${#dates.format(score?.playedOn, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            <tr th:if="${topScores == null or #lists.isEmpty(topScores)}">
+                <td colspan="3">No scores yet.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${gameStarted}" class="game-field" th:utext="${htmlField}"></div>
+
+    <div th:if="${gameStarted and !selectingStart}">
+        <a href="/numberlink?action=back"><button>Cancel Move</button></a>
+    </div>
+
+</div>
+</body>
+</html>

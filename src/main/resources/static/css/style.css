@@ -1,0 +1,212 @@
+body {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #34495e;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #2980b9;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    background-color: #f1f1f1;
+}
+
+button {
+    background: linear-gradient(90deg, #2980b9, #3498db);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(90deg, #3498db, #1f6a99);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.game-field {
+    margin: 2rem 0;
+}
+
+.game-field table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.game-field td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #2980b9;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    transition: background-color 0.3s;
+}
+
+.game-field td.number {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+td.number[data-value="1"] { background-color: #f28b82; color: #000; }
+td.number[data-value="2"] { background-color: #fbbc04; color: #000; }
+td.number[data-value="3"] { background-color: #fff475; color: #000; }
+td.number[data-value="4"] { background-color: #ccff90; color: #000; }
+td.number[data-value="5"] { background-color: #a7ffeb; color: #000; }
+td.number[data-value="6"] { background-color: #cbf0f8; color: #000; }
+td.number[data-value="7"] { background-color: #aecbfa; color: #000; }
+td.number[data-value="8"] { background-color: #d7aefb; color: #000; }
+td.number[data-value="9"] { background-color: #fdcfe8; color: #000; }
+
+.game-field td.path {
+    background-color: #ffffff;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 2px solid #2980b9;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #2c3e50;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.game-field td.path:hover {
+    background-color: #d0e5f4;
+    transform: scale(1.1);
+}
+
+.game-field td.path.selected {
+    background-color: #2980b9;
+    color: white;
+    border: 2px solid #1f6a99;
+}
+
+.message {
+    color: #e74c3c;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.scores-table, .comments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 1rem;
+}
+
+.scores-table th, .scores-table td,
+.comments-table th, .comments-table td {
+    border: 1px solid #2980b9;
+    padding: 1rem;
+    text-align: center;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+}
+
+.scores-table th, .comments-table th {
+    background-color: #2980b9;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.scores-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.scores-table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.scores-table tr:hover {
+    background-color: #d0e5f4;
+}
+
+.comments-table {
+    margin-top: 1.5rem;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+    padding: 0.75rem;
+    border: 1px solid #2980b9;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .form-group {
+        max-width: 100%;
+    }
+
+    .game-field table {
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
